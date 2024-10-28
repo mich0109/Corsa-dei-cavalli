@@ -1,38 +1,32 @@
-import java.util.Random;
+import java.util.Scanner;
 
-public class Cavallo extends Thread {
-    private String nome;
-    private int lunghezzaPercorso;
-    private int metriPercorsi = 0;
-    private Random random = new Random(); // Generatore di numeri casuali per avanzamento
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-    public Cavallo(String nome, int lunghezzaPercorso) {
-        this.nome = nome;
-        this.lunghezzaPercorso = lunghezzaPercorso;
-    }
+        // Chiede la lunghezza del percorso
+        System.out.print("Inserisci la lunghezza del percorso della gara in metri: ");
+        int lunghezzaPercorso = scanner.nextInt();
+        scanner.nextLine(); // Riempe la nuova linea rimasta
 
-    @Override
-    public void run() {
-            while (metriPercorsi < lunghezzaPercorso) {
-                // Ogni step il cavallo avanza tra 1 e 10 metri
-                int passo = random.nextInt(10) + 1; 
-                metriPercorsi += passo;
+        // Crea la gara
+        GaraDiCavalli gara = new GaraDiCavalli(lunghezzaGara);
 
-                // Limita i metri percorsi alla lunghezza totale della gara
-                if (metriPercorsi > lunghezzaPercorso) {
-                    metriPercorsi = lunghezzaPercorso;
-                }
+        // Chiede il numero di cavalli
+        System.out.print("Inserisci il numero di cavalli: ");
+        int numeroCavalli = scanner.nextInt();
+        scanner.nextLine(); 
 
-                // Visualizza l'avanzamento del cavallo
-                System.out.println(nome + " ha percorso " + metriPercorsi + " metri.");
-
-                // Pausa tra un passo e l'altro per simulare la corsa (ad esempio 500 ms)
-                Thread.sleep(500);
-            }
-
-            System.out.println(nome + " ha tagliato il traguardo!");
-        } catch (InterruptedException e) {
-            System.out.println(nome + " è stato interrotto!");
+        // Aggiunge i cavalli alla gara
+        for (int i = 0; i < numeroCavalli; i++) {
+            System.out.print("Inserisci il nome del cavallo " + (i + 1) + ": ");
+            String nomeCavallo = scanner.nextLine();
+            gara.aggiungiCavallo(nomeCavallo);
         }
+
+        gara.avviaGara();
+        scanner.close();
     }
+}
+
 
