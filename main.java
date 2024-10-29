@@ -10,7 +10,7 @@ public class Main {
         scanner.nextLine(); // Riempe la nuova linea rimasta
 
         // Crea la gara
-        GaraDiCavalli gara = new GaraDiCavalli(lunghezzaGara);
+        GaraDiCavalli gara = new GaraDiCavalli(lunghezzaPercorso);
 
         // Chiede il numero di cavalli
         System.out.print("Inserisci il numero di cavalli: ");
