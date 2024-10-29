@@ -14,7 +14,6 @@ public class Cavallo extends Thread {
     @Override
     public void run() {
         while (metriPercorsi < lunghezzaPercorso) {
-            // Ogni step il cavallo avanza tra 1 e 10 metri
             int passo = random.nextInt(10) + 1;
             metriPercorsi += passo;
 
